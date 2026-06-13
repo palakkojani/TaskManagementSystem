@@ -93,9 +93,6 @@ A powerful **Task Management Web Application** built with **ASP.NET Core MVC** a
 
 ## 📸 Screenshots
 
-
-## 📸 Screenshots
-
 ### 🔑 Login Page
 
 <img src="screenshots/login.png" width="900">
@@ -123,7 +120,6 @@ A powerful **Task Management Web Application** built with **ASP.NET Core MVC** a
 ### 📌 Task Assignment
 
 <img src="screenshots/task-assignment.png" width="900">
----
 
 ## ⚙️ Installation Guide
 
