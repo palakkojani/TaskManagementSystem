@@ -93,7 +93,6 @@ A powerful **Task Management Web Application** built with **ASP.NET Core MVC** a
 
 ## 📸 Screenshots
 
-Add your project screenshots here:
 
 ## 📸 Screenshots
 
