@@ -90,36 +90,31 @@ A powerful **Task Management Web Application** built with **ASP.NET Core MVC** a
 | Change Roles        | ❌    | ❌     | ✅          |
 
 ---
-
 ## 📸 Screenshots
 
 ### 🔑 Login Page
-
-<img src="screenshots/login.png" width="900">
+![Login Page](screenshots/login.png)
 
 ---
 
 ### 📝 Register Page
-
-<img src="screenshots/register.png" width="900">
+![Register Page](screenshots/register.png)
 
 ---
 
 ### 👤 User Dashboard
-
-<img src="screenshots/user-dashboard.png" width="900">
+![User Dashboard](screenshots/user-dashboard.png)
 
 ---
 
 ### 👑 Admin Dashboard
-
-<img src="screenshots/Admin-dashboard.png" width="900">
+![Admin Dashboard](screenshots/Admin-dashboard.png)
 
 ---
 
 ### 📌 Task Assignment
+![Task Assignment](screenshots/task-assignment.png)
 
-<img src="screenshots/task-assignment.png" width="900">
 
 ## ⚙️ Installation Guide
 
