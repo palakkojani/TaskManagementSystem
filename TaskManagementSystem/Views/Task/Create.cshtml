@@ -1,0 +1,99 @@
+﻿@model TaskManagementSystem.Models.TaskItem
+
+<div class="card shadow">
+
+    <div class="card-header bg-success text-white">
+        <h3>Add New Task</h3>
+    </div>
+
+    <div class="card-body">
+
+        <form method="post">
+
+            <div class="mb-3">
+                <label class="form-label">Title</label>
+                <input type="text"
+                       name="Title"
+                       class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Description</label>
+                <input type="text"
+                       name="Description"
+                       class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Status</label>
+
+                <select name="Status" class="form-select">
+                    <option>Pending</option>
+                    <option>In Progress</option>
+                    <option>Completed</option>
+                </select>
+
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Priority</label>
+
+                <select name="Priority" class="form-select">
+                    <option>High</option>
+                    <option>Medium</option>
+                    <option>Low</option>
+                </select>
+
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Due Date</label>
+
+                <input type="date"
+                       name="DueDate"
+                       class="form-control" />
+            </div>
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Category
+                </label>
+
+                <select name="Category"
+                        class="form-select">
+
+                    <option>Development</option>
+                    <option>Testing</option>
+                    <option>Design</option>
+                    <option>Meeting</option>
+                    <option>Documentation</option>
+
+                </select>
+                <div class="mb-3">
+                    <label class="form-label">
+                        Assign To (User Email)
+                    </label>
+
+                    <input type="email"
+                           name="UserEmail"
+                           class="form-control"
+                           placeholder="Enter user email"
+                           value="@Context.Session.GetString("UserEmail")" />
+                </div>
+
+            </div>
+            <button type="submit"
+                    class="btn btn-success">
+                Save Task
+            </button>
+
+            <a href="/Task"
+               class="btn btn-secondary">
+                Back
+            </a>
+
+        </form>
+
+    </div>
+
+</div>

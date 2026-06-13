@@ -1,0 +1,65 @@
+﻿@model TaskManagementSystem.Models.TaskItem
+
+<div class="container mt-4">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-info text-white">
+            <h2>Task Details</h2>
+        </div>
+
+        <div class="card-body">
+
+            <table class="table table-bordered">
+
+                <tr>
+                    <th>Id</th>
+                    <td>@Model.Id</td>
+                </tr>
+
+                <tr>
+                    <th>Title</th>
+                    <td>@Model.Title</td>
+                </tr>
+
+                <tr>
+                    <th>Description</th>
+                    <td>@Model.Description</td>
+                </tr>
+
+                <tr>
+                    <th>Status</th>
+                    <td>@Model.Status</td>
+                </tr>
+
+                <tr>
+                    <th>Priority</th>
+                    <td>@Model.Priority</td>
+                </tr>
+                <tr>
+                    <th>Category</th>
+                    <td>
+                        @Model.Category
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Due Date</th>
+                    <td>
+                        @(Model.DueDate?.ToString("dd-MMM-yyyy"))
+                    </td>
+                </tr>
+
+            </table>
+
+            <a asp-controller="Task"
+               asp-action="Index"
+               class="btn btn-secondary">
+                Back
+            </a>
+
+        </div>
+
+    </div>
+
+</div>

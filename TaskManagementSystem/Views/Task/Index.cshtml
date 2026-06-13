@@ -1,0 +1,393 @@
+﻿@model TaskManagementSystem.Models.TaskDashboardViewModel
+
+<div class="container mt-4">
+
+    
+    <div class="row mb-4">
+
+        <div class="col-md-2">
+            <div class="card bg-primary text-white">
+                <div class="card-body text-center">
+                    <h5>Total Tasks</h5>
+                    <h2>@Model.TotalTasks</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <div class="card bg-danger text-white">
+                <div class="card-body text-center">
+                    <h5>Pending</h5>
+                    <h2>@Model.PendingTasks</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <div class="card bg-warning">
+                <div class="card-body text-center">
+                    <h5>In Progress</h5>
+                    <h2>@Model.InProgressTasks</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <div class="card bg-success text-white">
+                <div class="card-body text-center">
+                    <h5>Completed</h5>
+                    <h2>@Model.CompletedTasks</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <div class="card bg-dark text-white">
+                <div class="card-body text-center">
+                    <h5>Overdue</h5>
+                    <h2>@Model.OverdueTasks</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card shadow mb-4">
+
+        <div class="card-header bg-dark text-white">
+            <h4>Task Analytics</h4>
+        </div>
+
+        <div style="width:350px; height:350px; margin:auto;">
+            <canvas id="taskChart"></canvas>
+        </div>
+
+    </div>
+    <div class="card shadow">
+
+        <div class="card-header bg-primary text-white">
+            <h2>Task Management System</h2>
+        </div>
+
+        <div class="card-body">
+
+            <form method="get"
+                  asp-action="Index"
+                  class="mb-3">
+
+                <div class="row g-2">
+
+                    <div class="col-md-4">
+                        <input type="text"
+                               name="searchText"
+                               value="@ViewBag.SearchText"
+                               class="form-control"
+                               placeholder="Search by Title or Description..." />
+                    </div>
+
+                    <div class="col-md-2">
+                        <select name="statusFilter" class="form-select">
+
+                            <option value="">All Status</option>
+
+                            <option value="Pending"
+                                    selected="@(ViewBag.StatusFilter == "Pending")">
+                                Pending
+                            </option>
+
+                            <option value="In Progress"
+                                    selected="@(ViewBag.StatusFilter == "In Progress")">
+                                In Progress
+                            </option>
+
+                            <option value="Completed"
+                                    selected="@(ViewBag.StatusFilter == "Completed")">
+                                Completed
+                            </option>
+
+                        </select>
+                    </div>
+
+                    <div class="col-md-2">
+                        <select name="categoryFilter" class="form-select">
+
+                            <option value="">All Categories</option>
+
+                            <option value="Development"
+                                    selected="@(ViewBag.CategoryFilter == "Development")">
+                                Development
+                            </option>
+
+                            <option value="Testing"
+                                    selected="@(ViewBag.CategoryFilter == "Testing")">
+                                Testing
+                            </option>
+
+                            <option value="Design"
+                                    selected="@(ViewBag.CategoryFilter == "Design")">
+                                Design
+                            </option>
+
+                            <option value="Meeting"
+                                    selected="@(ViewBag.CategoryFilter == "Meeting")">
+                                Meeting
+                            </option>
+
+                            <option value="Documentation"
+                                    selected="@(ViewBag.CategoryFilter == "Documentation")">
+                                Documentation
+                            </option>
+
+                        </select>
+                    </div>
+
+                    <div class="col-md-2">
+                        <select name="sortOrder" class="form-select">
+
+                            <option value="">Sort By</option>
+
+                            <option value="newest"
+                                    selected="@(ViewBag.SortOrder == "newest")">
+                                Newest First
+                            </option>
+
+                            <option value="oldest"
+                                    selected="@(ViewBag.SortOrder == "oldest")">
+                                Oldest First
+                            </option>
+
+                            <option value="dueAsc"
+                                    selected="@(ViewBag.SortOrder == "dueAsc")">
+                                Due Date Asc
+                            </option>
+
+                            <option value="dueDesc"
+                                    selected="@(ViewBag.SortOrder == "dueDesc")">
+                                Due Date Desc
+                            </option>
+
+                            <option value="highPriority"
+                                    selected="@(ViewBag.SortOrder == "highPriority")">
+                                High Priority First
+                            </option>
+
+                        </select>
+                    </div>
+
+                    <div class="col-md-1">
+                        <button type="submit"
+                                class="btn btn-primary w-100">
+                            Search
+                        </button>
+                    </div>
+
+                    <div class="col-md-1">
+                        <a asp-action="Index"
+                           class="btn btn-secondary w-100">
+                            Reset
+                        </a>
+                    </div>
+
+                </div>
+
+            </form>
+            <a asp-controller="Task"
+               asp-action="Create"
+               class="btn btn-success mb-3">
+                Add New Task
+            </a>
+      
+            <a asp-controller="Task"
+               asp-action="ExportToExcel"
+               class="btn btn-primary mb-3 ms-2">
+                Export To Excel
+            </a>
+            <a asp-controller="Task"
+               asp-action="ExportToPdf"
+               class="btn btn-danger mb-3 ms-2">
+                Export To PDF
+            </a>
+
+            <table class="table table-bordered table-hover">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Id</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th>Priority</th>
+                        <th>Category</th>
+                        <th>Due Date</th>
+                        <th>Overdue</th>
+                        <th width="250">Action</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    @foreach (var task in Model.Tasks)
+                    {
+                        <tr>
+
+                            <td>@task.Id</td>
+
+                            <td>@task.Title</td>
+
+                            <td>@task.Description</td>
+
+                            <td>
+
+                                @if (task.Status == "Completed")
+                                {
+                                    <span class="badge bg-success">
+                                        Completed
+                                    </span>
+                                }
+                                else if (task.Status == "In Progress")
+                                {
+                                    <span class="badge bg-warning text-dark">
+                                        In Progress
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-danger">
+                                        Pending
+                                    </span>
+                                }
+
+                            </td>
+
+                            <td>
+
+                                @if (task.Priority == "High")
+                                {
+                                    <span class="badge bg-danger">
+                                        High
+                                    </span>
+                                }
+                                else if (task.Priority == "Medium")
+                                {
+                                    <span class="badge bg-warning text-dark">
+                                        Medium
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-success">
+                                        Low
+                                    </span>
+                                }
+
+                            </td>
+                            <td>
+                                @task.Category
+                            </td>
+
+                            <td>
+                                @(task.DueDate?.ToString("dd-MMM-yyyy"))
+                            </td>
+
+                            <td>
+
+                                @if (task.Status != "Completed"
+                                                            && task.DueDate.HasValue
+                                                            && task.DueDate.Value.Date < DateTime.Today)
+                                {
+                                    <span class="badge bg-danger">
+                                        OVERDUE
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-success">
+                                        OK
+                                    </span>
+                                }
+
+                            </td>
+
+                            <td>
+
+                                <a asp-controller="Task"
+                                   asp-action="Details"
+                                   asp-route-id="@task.Id"
+                                   class="btn btn-info btn-sm">
+                                    View
+                                </a>
+
+                                <a asp-controller="Task"
+                                   asp-action="Edit"
+                                   asp-route-id="@task.Id"
+                                   class="btn btn-primary btn-sm">
+                                    Edit
+                                </a>
+
+                                <a asp-controller="Task"
+                                   asp-action="Delete"
+                                   asp-route-id="@task.Id"
+                                   class="btn btn-danger btn-sm"
+                                   onclick="return confirm('Delete this task?')">
+                                    Delete
+                                </a>
+
+                            </td>
+
+                        </tr>
+                    }
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+    
+
+</div>
+
+@section Scripts {
+
+    <script>
+
+        window.onload = function () {
+
+            console.log("Chart =", typeof Chart);
+
+            const ctx =
+                document.getElementById('taskChart');
+
+            new Chart(ctx, {
+
+                type: 'pie',
+
+                data: {
+
+                    labels: [
+                        'Pending',
+                        'In Progress',
+                        'Completed',
+                        'Overdue'
+                    ],
+
+                    datasets: [{
+
+                        data: [
+                            @Model.PendingTasks,
+                            @Model.InProgressTasks,
+                            @Model.CompletedTasks,
+                            @Model.OverdueTasks
+                        ]
+
+                    }]
+                }
+
+            });
+
+        };
+
+    </script>
+
+}

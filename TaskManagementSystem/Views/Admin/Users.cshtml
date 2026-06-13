@@ -1,0 +1,74 @@
+﻿@model List<TaskManagementSystem.Models.User>
+
+@{
+    ViewData["Title"] = "Manage Users";
+}
+
+<h2 class="mb-4">Manage Users</h2>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Action</th>
+            <th>Role Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Id</td>
+                <td>@user.Name</td>
+                <td>@user.Email</td>
+                <td>@user.Role</td>
+
+                <td>
+                    @if (user.Role != "Admin")
+                    {
+                        <a asp-controller="Admin"
+                           asp-action="DeleteUser"
+                           asp-route-id="@user.Id"
+                           class="btn btn-danger btn-sm"
+                           onclick="return confirm('Are you sure you want to delete this user?');">
+                            Delete
+                        </a>
+                    }
+                </td>
+                <td>
+                    @if (user.Role == "User")
+                    {
+                        <a asp-controller="Admin"
+                           asp-action="ChangeRole"
+                           asp-route-id="@user.Id"
+                           asp-route-role="Admin"
+                           class="btn btn-success btn-sm">
+                            Make Admin
+                        </a>
+                    }
+                    else if (user.Role == "Admin")
+                    {
+                        <a asp-controller="Admin"
+                           asp-action="ChangeRole"
+                           asp-route-id="@user.Id"
+                           asp-route-role="User"
+                           class="btn btn-warning btn-sm">
+                            Make User
+                        </a>
+                    }
+                    else
+                    {
+                        <span class="badge bg-dark">
+                            SuperAdmin
+                        </span>
+                    }
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>

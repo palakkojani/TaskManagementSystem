@@ -1,0 +1,116 @@
+﻿@model TaskManagementSystem.Models.TaskItem
+
+<div class="card shadow">
+
+    <div class="card-header bg-primary text-white">
+        <h3>Edit Task</h3>
+    </div>
+
+    <div class="card-body">
+
+        <form method="post">
+
+            <input type="hidden"
+                   name="Id"
+                   value="@Model.Id" />
+
+            <div class="mb-3">
+                <label class="form-label">Title</label>
+
+                <input type="text"
+                       name="Title"
+                       value="@Model.Title"
+                       class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Description</label>
+
+                <input type="text"
+                       name="Description"
+                       value="@Model.Description"
+                       class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Status</label>
+
+                <select name="Status" class="form-select">
+
+                    <option value="Pending">Pending</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Completed">Completed</option>
+
+                </select>
+
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Priority</label>
+
+                <select name="Priority" class="form-select">
+
+                    <option value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Low</option>
+
+                </select>
+
+            </div>
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Category
+                </label>
+
+                <select name="Category"
+                        class="form-select">
+
+                    <option selected="@(Model.Category == "Development")">
+                        Development
+                    </option>
+
+                    <option selected="@(Model.Category == "Testing")">
+                        Testing
+                    </option>
+
+                    <option selected="@(Model.Category == "Design")">
+                        Design
+                    </option>
+
+                    <option selected="@(Model.Category == "Meeting")">
+                        Meeting
+                    </option>
+
+                    <option selected="@(Model.Category == "Documentation")">
+                        Documentation
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Due Date</label>
+
+                <input type="date"
+                       name="DueDate"
+                       value="@(Model.DueDate?.ToString("yyyy-MM-dd"))"
+                       class="form-control" />
+            </div>
+
+            <button type="submit"
+                    class="btn btn-primary">
+                Update Task
+            </button>
+
+            <a href="/Task"
+               class="btn btn-secondary">
+                Back
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
