@@ -95,15 +95,35 @@ A powerful **Task Management Web Application** built with **ASP.NET Core MVC** a
 
 Add your project screenshots here:
 
-```text
-Home Page
-Login Page
-Dashboard
-Admin Panel
-Task Assignment
-Dark Mode
-```
+## 📸 Screenshots
 
+### 🔑 Login Page
+
+<img src="screenshots/login.png" width="900">
+
+---
+
+### 📝 Register Page
+
+<img src="screenshots/register.png" width="900">
+
+---
+
+### 👤 User Dashboard
+
+<img src="screenshots/user-dashboard.png" width="900">
+
+---
+
+### 👑 Admin Dashboard
+
+<img src="screenshots/Admin-dashboard.png" width="900">
+
+---
+
+### 📌 Task Assignment
+
+<img src="screenshots/task-assignment.png" width="900">
 ---
 
 ## ⚙️ Installation Guide
